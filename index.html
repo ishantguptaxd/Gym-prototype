@@ -5,21 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitZone Gym - Your Ultimate Fitness Destination</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        /* Reset and Base Styles */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
+            background-color: #f4f4f4;
         }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Header and Navigation */
         header {
-            background-color: #1a1a1a;
-            color: #fff;
+            background-color: #007bff;
+            color: white;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         nav {
             display: flex;
@@ -27,131 +43,189 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
-        nav h1 {
-            margin: 0;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
         }
-        nav ul {
+        .nav-links {
             list-style: none;
             display: flex;
-            margin: 0;
-            padding: 0;
         }
-        nav ul li {
+        .nav-links li {
             margin-left: 2rem;
         }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
+        .nav-links a {
             transition: color 0.3s;
         }
-        nav ul li a:hover {
-            color: #ff6b35;
+        .nav-links a:hover {
+            color: #ffd700;
         }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
         .hero {
-            background-image: url('https://via.placeholder.com/1200x600?text=Gym+Hero+Image'); /* Replace with actual image URL */
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(0,123,255,0.8), rgba(0,123,255,0.8)), url('https://picsum.photos/1200/600?random=1') no-repeat center/cover;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #fff;
+            color: white;
             padding-top: 80px;
         }
-        .hero h2 {
+        .hero-content h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
-        .hero p {
+        .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
         }
         .btn {
-            background-color: #ff6b35;
-            color: #fff;
+            background-color: #28a745;
+            color: white;
             padding: 0.75rem 1.5rem;
-            text-decoration: none;
+            border: none;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            cursor: pointer;
+            transition: background 0.3s;
         }
         .btn:hover {
-            background-color: #e55a2b;
+            background-color: #218838;
         }
+
+        /* Sections */
         section {
-            padding: 4rem 2rem;
+            padding: 4rem 1rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .about, .equipment, .plans, .contact {
-            margin-bottom: 4rem;
-        }
-        .about h2, .equipment h2, .plans h2, .contact h2 {
+        h2 {
             text-align: center;
             margin-bottom: 2rem;
-            color: #1a1a1a;
+            color: #007bff;
+            font-size: 2.5rem;
         }
-        .equipment-grid {
+        .section-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
+
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+
+        /* Contact and Address */
+        .contact {
+            background-color: #e9ecef;
+        }
+        .contact-info {
+            text-align: center;
+        }
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+
+        /* Equipment */
+        .equipment {
+            background-color: white;
+        }
         .equipment-item {
             text-align: center;
-            border: 1px solid #ddd;
-            padding: 1rem;
-            border-radius: 5px;
         }
         .equipment-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
+            border-radius: 10px;
+            margin-bottom: 1rem;
         }
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+
+        /* Subscriptions */
+        .subscriptions {
+            background-color: #e9ecef;
         }
         .plan {
-            border: 1px solid #ddd;
+            background-color: white;
             padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             text-align: center;
-            border-radius: 5px;
-            transition: box-shadow 0.3s;
-        }
-        .plan:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .plan h3 {
+            color: #007bff;
             margin-bottom: 1rem;
         }
         .plan ul {
             list-style: none;
-            padding: 0;
             margin-bottom: 1rem;
         }
         .plan ul li {
             margin-bottom: 0.5rem;
         }
+
+        /* Footer */
         footer {
-            background-color: #1a1a1a;
-            color: #fff;
+            background-color: #007bff;
+            color: white;
             text-align: center;
             padding: 2rem 0;
         }
+
+        /* Modal for Subscription Details */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+        }
+        .close {
+            float: right;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
+            .nav-links {
+                display: none;
                 flex-direction: column;
-                align-items: center;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #007bff;
+                padding: 1rem 0;
             }
-            nav ul li {
-                margin: 0.5rem 0;
+            .nav-links.active {
+                display: flex;
             }
-            .hero h2 {
+            .menu-toggle {
+                display: block;
+            }
+            .hero-content h1 {
                 font-size: 2rem;
+            }
+            .section-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -159,115 +233,154 @@
 <body>
     <header>
         <nav>
-            <h1>FitZone Gym</h1>
-            <ul>
-                <li><a href="#home">Home</a></li>
+            <div class="logo">FitZone Gym</div>
+            <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#equipment">Equipment</a></li>
-                <li><a href="#plans">Membership</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#equipment">Equipment</a></li>
+                <li><a href="#subscriptions">Subscriptions</a></li>
             </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div>
-            <h2>Welcome to FitZone Gym</h2>
-            <p>Transform your body and mind with our state-of-the-art facilities and expert trainers.</p>
-            <a href="#plans" class="btn">Join Now</a>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to FitZone Gym</h1>
+            <p>Your Ultimate Fitness Destination</p>
+            <button class="btn" onclick="scrollToSection('subscriptions')">Join Now</button>
         </div>
     </section>
 
     <section id="about" class="about">
-        <h2>About Us</h2>
-        <p>FitZone Gym is dedicated to providing a premier fitness experience. Our gym features modern equipment, personalized training programs, and a supportive community. Whether you're a beginner or an athlete, we have everything you need to achieve your goals.</p>
-        <p>Located in the heart of the city, we offer flexible hours, group classes, and nutrition counseling. Join us today and start your fitness journey!</p>
-    </section>
-
-    <section id="equipment" class="equipment">
-        <h2>Our Equipment</h2>
-        <div class="equipment-grid">
-            <div class="equipment-item">
-                <img src="https://via.placeholder.com/300x200?text=Treadmill" alt="Treadmill"> <!-- Replace with actual image -->
-                <h3>Treadmill</h3>
-                <p>High-speed treadmills for cardio workouts, with incline and decline options.</p>
-            </div>
-            <div class="equipment-item">
-                <img src="https://via.placeholder.com/300x200?text=Dumbbells" alt="Dumbbells"> <!-- Replace with actual image -->
-                <h3>Dumbbells</h3>
-                <p>Free weights ranging from 5lbs to 100lbs for strength training.</p>
-            </div>
-            <div class="equipment-item">
-                <img src="https://via.placeholder.com/300x200?text=Elliptical" alt="Elliptical"> <!-- Replace with actual image -->
-                <h3>Elliptical Machine</h3>
-                <p>Low-impact cardio equipment for full-body workouts.</p>
-            </div>
-            <div class="equipment-item">
-                <img src="https://via.placeholder.com/300x200?text=Weight+Bench" alt="Weight Bench"> <!-- Replace with actual image -->
-                <h3>Weight Bench</h3>
-                <p>Adjustable benches for bench presses and other exercises.</p>
-            </div>
-            <div class="equipment-item">
-                <img src="https://via.placeholder.com/300x200?text=Rowing+Machine" alt="Rowing Machine"> <!-- Replace with actual image -->
-                <h3>Rowing Machine</h3>
-                <p>Simulates rowing for effective cardio and strength training.</p>
-            </div>
-            <div class="equipment-item">
-                <img src="https://via.placeholder.com/300x200?text=Leg+Press" alt="Leg Press"> <!-- Replace with actual image -->
-                <h3>Leg Press Machine</h3>
-                <p>Targets leg muscles with adjustable resistance.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="plans" class="plans">
-        <h2>Membership Plans</h2>
-        <div class="plans-grid">
-            <div class="plan">
-                <h3>Basic Plan</h3>
-                <p>$29/month</p>
-                <ul>
-                    <li>Access to gym equipment</li>
-                    <li>Locker room facilities</li>
-                    <li>Basic fitness assessment</li>
-                </ul>
-                <a href="#" class="btn">Sign Up</a>
-            </div>
-            <div class="plan">
-                <h3>Premium Plan</h3>
-                <p>$49/month</p>
-                <ul>
-                    <li>All Basic features</li>
-                    <li>Group classes (yoga, spin, etc.)</li>
-                    <li>Personal trainer consultation</li>
-                    <li>Nutrition guidance</li>
-                </ul>
-                <a href="#" class="btn">Sign Up</a>
-            </div>
-            <div class="plan">
-                <h3>VIP Plan</h3>
-                <p>$79/month</p>
-                <ul>
-                    <li>All Premium features</li>
-                    <li>Unlimited personal training sessions</li>
-                    <li>Priority booking for classes</li>
-                    <li>Guest passes</li>
-                </ul>
-                <a href="#" class="btn">Sign Up</a>
-            </div>
+        <h2>About FitZone Gym</h2>
+        <div class="section-content">
+            <p>FitZone Gym was founded in 2015 with a mission to make fitness accessible and enjoyable for everyone. Our facility features modern amenities, including cardio zones, strength training areas, group fitness studios, and recovery zones. We emphasize community, with events like fitness challenges and wellness workshops. Our certified trainers specialize in personalized programs, nutrition advice, and injury prevention.</p>
+            <ul>
+                <li><strong>Hours of Operation</strong>: Monday-Friday: 5:00 AM - 11:00 PM; Saturday-Sunday: 7:00 AM - 9:00 PM</li>
+                <li><strong>Amenities</strong>: Locker rooms with showers, sauna, free Wi-Fi, towel service, and a juice bar</li>
+                <li><strong>Special Features</strong>: 24/7 access for premium members, virtual training sessions, and partnerships with local nutritionists</li>
+            </ul>
         </div>
     </section>
 
     <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <p>Address: 123 Fitness St, City, State 12345</p>
-        <p>Phone: (123) 456-7890</p>
-        <p>Email: info@fitzonegym.com</p>
-        <p>Hours: Mon-Fri 5am-10pm, Sat-Sun 7am-8pm</p>
+        <h2>Contact & Address</h2>
+        <div class="section-content">
+            <div class="contact-info">
+                <p><strong>Phone</strong>: (555) 123-4567</p>
+                <p><strong>Email</strong>: info@fitzonegym.com</p>
+                <p><strong>Website</strong>: www.fitzonegym.com</p>
+                <p><strong>Social Media</strong>: Follow us on Instagram (@FitZoneGym) and Facebook (FitZone Gym Official)</p>
+            </div>
+            <div class="contact-info">
+                <p><strong>Address</strong>: 123 Fitness Avenue, Downtown City, State 12345, United States</p>
+                <p><strong>Directions</strong>: Easily accessible via public transit (Bus Stop #45) or major highways. Free parking available in our lot.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipment" class="equipment">
+        <h2>Equipment Information</h2>
+        <div class="section-content">
+            <div class="equipment-item">
+                <h3>Cardio Equipment</h3>
+                <img src="https://picsum.photos/400/300?random=2" alt="Treadmills">
+                <p>Treadmills, Ellipticals, and Stationary Bikes with advanced features.</p>
+            </div>
+            <div class="equipment-item">
+                <h3>Strength Training Equipment</h3>
+                <img src="https://picsum.photos/400/300?random=3" alt="Free Weights">
+                <p>Free Weights, Weight Machines, and Functional Training tools.</p>
+            </div>
+            <div class="equipment-item">
+                <h3>Other Equipment</h3>
+                <img src="https://picsum.photos/400/300?random=4" alt="Group Fitness Studio">
+                <p>Group Fitness Studios and Recovery Zones.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="subscriptions" class="subscriptions">
+        <h2>Subscription Plans</h2>
+        <div class="section-content">
+            <div class="plan">
+                <h3>Basic</h3>
+                <p>$29.99/month or $323.89/year</p>
+                <ul>
+                    <li>Access to gym floor, cardio, and strength equipment.</li>
+                </ul>
+                <button class="btn" onclick="openModal('Basic')">Learn More</button>
+            </div>
+            <div class="plan">
+                <h3>Premium</h3>
+                <p>$49.99/month or $539.89/year</p>
+                <ul>
+                    <li>Includes group classes, sauna, and 24/7 access.</li>
+                </ul>
+                <button class="btn" onclick="openModal('Premium')">Learn More</button>
+            </div>
+            <div class="plan">
+                <h3>VIP</h3>
+                <p>$79.99/month or $863.89/year</p>
+                <ul>
+                    <li>Unlimited personal training, nutrition consultations, and priority booking.</li>
+                </ul>
+                <button class="btn" onclick="openModal('VIP')">Learn More</button>
+            </div>
+            <div class="plan">
+                <h3>Family</h3>
+                <p>$99.99/month or $1,079.89/year</p>
+                <ul>
+                    <li>Up to 4 family members, all amenities included.</li>
+                </ul>
+                <button class="btn" onclick="openModal('Family')">Learn More</button>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem;">Payment Options: Auto-pay via credit card, debit, or bank transfer. No long-term contracts; cancel anytime. Free 7-day trial for new members.</p>
     </section>
 
     <footer>
-        <p>&copy; 2023 FitZone Gym. All rights reserved.</p>
+        <p>&copy; 2023 FitZone Gym. All rights reserved. Ready to start your fitness journey? Visit us today!</p>
     </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Plan Details</h3>
+            <p id="modal-description">Details about the selected plan will appear here.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openModal(plan) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const desc = document.getElementById('modal-description');
+            title.textContent = plan + ' Plan';
+            desc.textContent = 'This plan includes all standard benefits plus extras. Contact us for full details.';
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
