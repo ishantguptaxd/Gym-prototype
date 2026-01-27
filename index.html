@@ -1,472 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitZone Gym - Your Ultimate Fitness Destination</title>
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
-            animation: fadeIn 1s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Achieve your fitness goals at Gym Prototype. Explore workout plans, facilities, trainer highlights, and member testimonials.">
+  <meta name="keywords" content="gym, fitness, workout plans, facilities, trainers, testimonials">
+  <title>Gym Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://via.placeholder.com/32x32?text=G" type="image/x-icon">
+  <style>
+    /* ==== GLOBAL STYLES ==== */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+      color: #1a202c;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    h1, h2, h3 {
+      font-family: 'Oswald', sans-serif;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 3.5em; }
+    h2 { font-size: 2.5em; color: #2d3748; }
+    h3 { font-size: 1.8em; color: #3182ce; }
+    .section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .btn {
+      display: inline-block;
+      background: #3182ce;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .btn:hover {
+      background: #2c5282;
+      transform: translateY(-2px);
+    }
 
-        /* Header and Navigation */
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        .nav-links a {
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: #ffd700;
-        }
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+    /* ==== HEADER ==== */
+    header {
+      background: #1a202c;
+      color: #ffffff;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h2 {
+      margin: 0;
+      font-size: 2em;
+      font-family: 'Oswald', sans-serif;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: #63b3ed;
+      font-weight: 500;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,123,255,0.8), rgba(0,123,255,0.8)), url('https://picsum.photos/1200/600?random=1') no-repeat center/cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding-top: 80px;
-        }
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: slideIn 1s ease-out;
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .btn {
-            background-color: #28a745;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-        }
-        .btn:hover {
-            background-color: #218838;
-            transform: scale(1.05);
-        }
+    /* ==== HERO ==== */
+    .hero {
+      background: linear-gradient(135deg, #d9e2ec 0%, #3182ce 100%);
+      padding: 120px 20px;
+      text-align: center;
+      color: #1a202c;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://via.placeholder.com/1200x600?text=Gym+Hero') no-repeat center center;
+      background-size: cover;
+      opacity: 0.2;
+      z-index: -1;
+    }
+    .hero h1 {
+      font-size: 4em;
+      margin: 0 0 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+    }
 
-        /* Sections */
-        section {
-            padding: 4rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #007bff;
-            font-size: 2.5rem;
-        }
-        .section-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
+    /* ==== PLANS GRID ==== */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .plan-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+    .plan-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .plan-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .plan-item p {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+    .plan-item .price {
+      font-size: 1.4em;
+      color: #3182ce;
+      font-weight: bold;
+    }
 
-        /* About Section (Reduced Size) */
-        .about {
-            background-color: white;
-            padding: 2rem 1rem; /* Reduced padding for smaller size */
-        }
-        .about p {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
+    /* ==== GALLERY ==== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
 
-        /* Services Section (New Addition) */
-        .services {
-            background-color: #e9ecef;
-        }
-        .service-item {
-            text-align: center;
-            padding: 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .service-item:hover {
-            transform: translateY(-5px);
-        }
+    /* ==== TESTIMONIALS ==== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .testimonial-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '★★★★★';
+      color: #3182ce;
+      font-size: 1.5em;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .testimonial-card p {
+      font-style: italic;
+      color: #1a202c;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .testimonial-card h4 {
+      margin: 0;
+      text-align: right;
+      color: #2d3748;
+      font-weight: 500;
+    }
 
-        /* Contact and Address */
-        .contact {
-            background-color: white;
-        }
-        .contact-info {
-            text-align: center;
-        }
-        .contact-info p {
-            margin-bottom: 1rem;
-        }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #e9ecef;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        form input, form textarea {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        form button {
-            width: 100%;
-        }
+    /* ==== CONTACT ==== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .contact-info p {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+    .contact-form {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .contact-form h3 {
+      margin-top: 0;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Roboto', sans-serif;
+    }
+    .contact-form button {
+      background: #3182ce;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+    .contact-form button:hover {
+      background: #2c5282;
+    }
 
-        /* Equipment */
-        .equipment {
-            background-color: #e9ecef;
-        }
-        .equipment-item {
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .equipment-item:hover {
-            transform: translateY(-10px);
-        }
-        .equipment-item img {
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
+    /* ==== FOOTER ==== */
+    footer {
+      background: #1a202c;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+    footer .social-links {
+      margin-top: 10px;
+    }
+    footer .social-links a {
+      color: #63b3ed;
+      margin: 0 10px;
+      font-size: 1.5em;
+    }
+    footer .social-links a:hover {
+      color: #ffffff;
+    }
 
-        /* Subscriptions (Prices Reduced and in Rupees) */
-        .subscriptions {
-            background-color: white;
-        }
-        .plan {
-            background-color: #e9ecef;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: box-shadow 0.3s;
-        }
-        .plan:hover {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        .plan h3 {
-            color: #007bff;
-            margin-bottom: 1rem;
-        }
-        .plan ul {
-            list-style: none;
-            margin-bottom: 1rem;
-        }
-        .plan ul li {
-            margin-bottom: 0.5rem;
-        }
+    /* ==== RESPONSIVE ==== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5em; }
+      .hero { padding: 80px 20px; }
+      nav { flex-direction: column; gap: 10px; }
+      header .container { flex-direction: column; text-align: center; }
+      .plans-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 2em; }
+      h2 { font-size: 2em; }
+      .section { padding: 40px 20px; }
+    }
 
-        /* Footer */
-        footer {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Modal for Subscription Details */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 90%;
-        }
-        .close {
-            float: right;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: #007bff;
-                padding: 1rem 0;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            .section-content {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">FitZone Gym</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#equipment">Equipment</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#subscriptions">Subscriptions</a></li>
-            </ul>
-            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to FitZone Gym</h1>
-            <p>Your Ultimate Fitness Destination</p>
-            <button class="btn" onclick="scrollToSection('subscriptions')">Join Now</button>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <h2>Gym Prototype</h2>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#plans">Workout Plans</a>
+        <a href="#highlights">Trainer Highlights</a>
+        <a href="#gallery">Facilities</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Welcome to Gym Prototype</h1>
+      <p>Transform your body and mind with our state-of-the-art facilities and expert trainers</p>
+      <a href="#plans" class="btn">View Plans</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>Gym Prototype is a demo fitness center website prototype designed to showcase workout plans, facilities, trainer highlights, and member testimonials. Perfect for testing layouts or presenting gym concepts. We focus on personalized training and a supportive community to help you achieve your fitness goals.</p>
+    </div>
+  </section>
+
+  <!-- WORKOUT PLANS -->
+  <section id="plans" class="section">
+    <div class="container">
+      <h2>Workout Plans</h2>
+      <div class="plans-grid">
+        <div class="plan-item">
+          <img src="https://via.placeholder.com/300x200?text=Weight+Training" alt="Weight Training">
+          <h3>Strength Training</h3>
+          <p>Build muscle and increase strength with our comprehensive weight training programs.</p>
+          <p class="price">₹2000/month</p>
         </div>
-    </section>
-
-    <section id="about" class="about">
-        <h2>About FitZone Gym</h2>
-        <p>Founded in 2015, FitZone Gym makes fitness accessible and enjoyable for everyone. We offer modern amenities, certified trainers, and a community-focused environment to help you achieve your goals.</p>
-        <ul style="text-align: center; list-style: none;">
-            <li><strong>Hours</strong>: Mon-Fri 5AM-11PM, Sat-Sun 7AM-9PM</li>
-            <li><strong>Amenities</strong>: Showers, sauna, Wi-Fi, juice bar</li>
-        </ul>
-    </section>
-
-    <section id="services" class="services">
-        <h2>Services Provided</h2>
-        <div class="section-content">
-            <div class="service-item">
-                <h3>Personal Training</h3>
-                <p>One-on-one sessions with certified trainers tailored to your fitness level and goals.</p>
-            </div>
-            <div class="service-item">
-                <h3>Group Classes</h3>
-                <p>Join HIIT, yoga, spin, and more in our energizing group fitness studios.</p>
-            </div>
-            <div class="service-item">
-                <h3>Nutrition Counseling</h3>
-                <p>Expert advice on meal plans and supplements to fuel your workouts.</p>
-            </div>
-            <div class="service-item">
-                <h3>Recovery & Wellness</h3>
-                <p>Access to saunas, massage chairs, and stretching zones for optimal recovery.</p>
-            </div>
+        <div class="plan-item">
+          <img src="https://via.placeholder.com/300x200?text=Cardio+Session" alt="Cardio Session">
+          <h3>Cardio Fitness</h3>
+          <p>Improve cardiovascular health with high-energy cardio sessions and equipment.</p>
+          <p class="price">₹1500/month</p>
         </div>
-    </section>
-
-    <section id="equipment" class="equipment">
-        <h2>Equipment Information</h2>
-        <div class="section-content">
-            <div class="equipment-item">
-                <img src="https://picsum.photos/400/300?random=2" alt="Cardio Equipment">
-                <h3>Cardio Equipment</h3>
-                <p>Treadmills, Ellipticals, and Stationary Bikes with advanced features.</p>
-            </div>
-            <div class="equipment-item">
-                <img src="https://picsum.photos/400/300?random=3" alt="Strength Training Equipment">
-                <h3>Strength Training Equipment</h3>
-                <p>Free Weights, Weight Machines, and Functional Training tools.</p>
-            </div>
-            <div class="equipment-item">
-                <img src="https://picsum.photos/400/300?random=4" alt="Other Equipment">
-                <h3>Other Equipment</h3>
-                <p>Group Fitness Studios and Recovery Zones.</p>
-            </div>
+        <div class="plan-item">
+          <img src="https://via.placeholder.com/300x200?text=Yoga+Class" alt="Yoga Class">
+          <h3>Yoga & Flexibility</h3>
+          <p>Enhance flexibility and reduce stress with guided yoga and stretching classes.</p>
+          <p class="price">₹1800/month</p>
         </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <h2>Contact & Address</h2>
-        <div class="section-content">
-            <div class="contact-info">
-                <p><strong>Phone</strong>: (555) 123-4567</p>
-                <p><strong>Email</strong>: info@fitzonegym.com</p>
-                <p><strong>Website</strong>: www.fitzonegym.com</p>
-                <p><strong>Social Media</strong>: Instagram (@FitZoneGym) and Facebook (FitZone Gym Official)</p>
-            </div>
-            <div class="contact-info">
-                <p><strong>Address</strong>: 123 Fitness Avenue, Downtown City, State 12345, United States</p>
-                <p><strong>Directions</strong>: Accessible via public transit (Bus Stop #45) or highways. Free parking available.</p>
-            </div>
+        <div class="plan-item">
+          <img src="https://via.placeholder.com/300x200?text=Personal+Training" alt="Personal Training">
+          <h3>Personal Training</h3>
+          <p>One-on-one sessions with certified trainers tailored to your specific goals.</p>
+          <p class="price">₹5000/month</p>
         </div>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-            <h3>Contact Us</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINER HIGHLIGHTS -->
+  <section id="highlights" class="section">
+    <div class="container">
+      <h2>Trainer Highlights</h2>
+      <div class="plans-grid">
+        <div class="plan-item">
+          <img src="https://via.placeholder.com/300x200?text=Elite+Trainer" alt="Elite Trainer">
+          <h3>Elite Strength Coach</h3>
+          <p>Certified trainer specializing in powerlifting and bodybuilding techniques.</p>
+          <p class="price">Book Session: ₹1000</p>
+        </div>
+        <div class="plan-item">
+          <img src="https://via.placeholder.com/300x200?text=Nutrition+Expert" alt="Nutrition Expert">
+          <h3>Nutrition Specialist</h3>
+          <p>Expert guidance on diet and supplementation to fuel your workouts.</p>
+          <p class="price">Consultation: ₹800</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>Facilities</h2>
+      <div class="gallery-grid">
+        <img src="https://via.placeholder.com/300x200?text=Weight+Room" alt="Weight Room">
+        <img src="https://via.placeholder.com/300x200?text=Cardio+Area" alt="Cardio Area">
+        <img src="https://via.placeholder.com/300x200?text=Yoga+Studio" alt="Yoga Studio">
+        <img src="https://via.placeholder.com/300x200?text=Lockers" alt="Lockers">
+        <img src="https://via.placeholder.com/300x200?text=Sauna" alt="Sauna">
+        <img src="https://via.placeholder.com/300x200?text=Gym+Entrance" alt="Gym Entrance">
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <h2>Member Testimonials</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>"Incredible facilities and motivating trainers! I've lost 20kg in 6 months."</p>
+          <h4>- Riya S.</h4>
+        </div>
+        <div class="testimonial-card">
+          <p>"The personal training sessions are top-notch. Highly recommend for beginners."</p>
+          <h4>- Amit K.</h4>
+        </div>
+        <div class="testimonial-card">
+          <p>"Great community and clean environment. My go-to place for staying fit!"</p>
+          <h4>- Priya M.</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p><strong>Address:</strong> 123 Fitness Street, Health City, India</p>
+          <p><strong>Phone:</strong> +91 00000 00000</p>
+          <p><strong>Email:</strong> info@gymprototype.com</p>
+          <p><strong>Hours:</strong> 5:00 AM – 11:00 PM (Daily)</p>
+        </div>
+        <div class="contact-form">
+          <h3>Join Now</h3>
+          <form action="#" method="post">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-    </section>
-
-    <section id="subscriptions" class="subscriptions">
-        <h2>Subscription Plans</h2>
-        <div class="section-content">
-            <div class="plan">
-                <h3>Basic</h3>
-                <p>₹1,660/month or ₹17,948/year</p>
-                <ul>
-                    <li>Access to gym floor, cardio, and strength equipment.</li>
-                </ul>
-                <button class="btn" onclick="openModal('Basic')">Learn More</button>
-            </div>
-            <div class="plan">
-                <h3>Premium</h3>
-                <p>₹2,905/month or ₹31,443/year</p>
-                <ul>
-                    <li>Includes group classes, sauna, and 24/7 access.</li>
-                </ul>
-                <button class="btn" onclick="openModal('Premium')">Learn More</button>
-            </div>
-            <div class="plan">
-                <h3>VIP</h3>
-                <p>₹4,565/month or ₹49,395/year</p>
-                <ul>
-                    <li>Unlimited personal training, nutrition consultations, and priority booking.</li>
-                </ul>
-                <button class="btn" onclick="openModal('VIP')">Learn More</button>
-            </div>
-            <div class="plan">
-                <h3>Family</h3>
-                <p>₹5,810/month or ₹62,883/year</p>
-                <ul>
-                    <li>Up to 4 family members, all amenities included.</li>
-                </ul>
-                <button class="btn" onclick="openModal('Family')">Learn More</button>
-            </div>
+            <input type="tel" name="phone" placeholder="Your Phone" required>
+            <input type="text" name="plan" placeholder="Preferred Plan" required>
+            <textarea name="message" rows="4" placeholder="Any Questions?"></textarea>
+            <button type="submit">Sign Up</button>
+          </form>
         </div>
-        <p style="text-align: center; margin-top: 2rem;">Payment Options: Auto-pay via credit card, debit, or bank transfer. No long-term contracts; cancel anytime. Free 7-day trial for new members.</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2023 FitZone Gym. All rights reserved. Ready to start your fitness journey? Visit us today!</p>
-    </footer>
-
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3 id="modal-title">Plan Details</h3>
-            <p id="modal-description">Details about the selected plan will appear here.</p>
-        </div>
+      </div>
     </div>
+  </section>
 
-    <script>
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Gym Prototype. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Twitter">🐦</a>
+      </div>
+    </div>
+  </footer>
 
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function openModal(plan) {
-            const modal = document.getElementById('modal');
-            const title = document.getElementById('modal-title');
-            const desc = document.getElementById('modal-description');
-            title.textContent = plan + ' Plan';
-            desc.textContent = 'This plan includes all standard benefits plus extras. Contact us for full details.';
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('modal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>
