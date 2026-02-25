@@ -3,43 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gym Prototype | Power in Every Device</title>
+  <title>Gym Prototype | Total Fitness Transformation</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   
   <style>
+    /* ==== GLOBAL & THEME ==== */
     :root {
       --primary: #3182ce;
-      --primary-hover: #2c5282;
+      --secondary: #63b3ed;
       --dark: #0f172a;
-      --glass: rgba(255, 255, 255, 0.05);
-      --text-main: #e2e8f0;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --text: #e2e8f0;
     }
 
-    /* ==== RESET & BASE ==== */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: var(--dark);
-      color: var(--text-main);
+      background-color: var(--dark);
+      color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* ==== RESPONSIVE TYPOGRAPHY ==== */
-    h1 { font-family: 'Oswald'; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1; }
-    h2 { font-family: 'Oswald'; font-size: clamp(1.8rem, 5vw, 3rem); text-align: center; margin-bottom: 2rem; }
-    p { font-size: clamp(1rem, 2vw, 1.2rem); }
+    /* ==== REVEAL ANIMATION ==== */
+    .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* ==== NAVIGATION ==== */
+    /* ==== HEADER & NAVIGATION ==== */
     header {
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(12px);
-      padding: 1rem 0;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 1000;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 0;
     }
     .nav-container {
       max-width: 1200px;
@@ -47,110 +46,138 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 5%;
+      padding: 0 20px;
     }
-    .logo { color: var(--primary); font-family: 'Oswald'; font-size: 1.5rem; text-decoration: none; }
+    .logo { font-family: 'Oswald'; font-size: 1.8rem; color: var(--primary); text-decoration: none; text-transform: uppercase; }
     
-    /* Desktop Nav */
-    nav { display: flex; gap: 1.5rem; }
-    nav a { color: #fff; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
+    nav { display: flex; gap: 15px; }
+    nav a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; transition: 0.3s; }
     nav a:hover { color: var(--primary); }
 
-    /* Mobile Nav Toggle */
-    .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
-    /* ==== HERO SECTION ==== */
+    /* ==== HERO SLIDESHOW ==== */
     .hero {
-      min-height: 80vh;
+      height: 85vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       position: relative;
-      padding: 2rem;
       overflow: hidden;
+      padding: 20px;
     }
     .slideshow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background-size: cover; background-position: center;
-      opacity: 0; animation: slideAnim 12s infinite; filter: brightness(0.4);
+      opacity: 0; animation: slideAnim 15s infinite; filter: brightness(0.3);
     }
-    .slide:nth-child(2) { animation-delay: 4s; }
-    .slide:nth-child(3) { animation-delay: 8s; }
+    .slide:nth-child(2) { animation-delay: 5s; }
+    .slide:nth-child(3) { animation-delay: 10s; }
     @keyframes slideAnim {
-      0%, 15% { opacity: 0; }
-      25%, 50% { opacity: 1; }
-      60%, 100% { opacity: 0; }
+      0%, 10% { opacity: 0; }
+      20%, 40% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
+    .hero-content h1 { font-family: 'Oswald'; font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 10px; }
+    .hero-content p { font-size: clamp(1rem, 3vw, 1.5rem); margin-bottom: 30px; color: #cbd5e0; }
     .btn {
-      display: inline-block; padding: 1rem 2.5rem; background: var(--primary);
-      color: white; border-radius: 50px; text-decoration: none; font-weight: bold;
-      margin-top: 2rem; transition: 0.3s; width: fit-content;
+      display: inline-block; padding: 15px 40px; background: var(--primary); color: #fff;
+      text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s;
+      box-shadow: 0 10px 20px rgba(49, 130, 206, 0.3);
     }
+    .btn:hover { background: #fff; color: var(--primary); transform: translateY(-3px); }
 
-    /* ==== RESPONSIVE GRID ==== */
-    .section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
+    /* ==== SECTION STYLING ==== */
+    .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+    h2 { font-family: 'Oswald'; font-size: 2.5rem; text-align: center; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
+
+    /* ==== ABOUT ==== */
+    .about-text { text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #94a3b8; }
+
+    /* ==== GRID SYSTEM (PLANS, TRAINERS, FACILITIES) ==== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      gap: 30px;
     }
 
     .card {
-      background: var(--glass);
-      border-radius: 15px;
+      background: var(--card-bg);
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.1);
-      transition: 0.3s;
-      height: 100%;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
     }
-    .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-    .card-img { width: 100%; height: 200px; object-fit: cover; }
-    .card-content { padding: 1.5rem; }
+    .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(255,255,255,0.08); }
+    
+    /* Image Shimmer/Zoom */
+    .card-img-wrapper { overflow: hidden; height: 200px; position: relative; }
+    .card-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .card:hover .card-img { transform: scale(1.1); }
+    
+    .card-content { padding: 25px; }
+    .card-content h3 { font-family: 'Oswald'; margin-bottom: 10px; color: var(--secondary); }
+    .price { font-size: 1.3rem; font-weight: bold; color: var(--primary); margin-top: 10px; display: block; }
 
-    /* ==== CONTACT & JOIN ==== */
-    .contact-wrapper {
-      background: #fff; color: #333; border-radius: 20px; padding: 2rem;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;
+    /* ==== TESTIMONIALS ==== */
+    .testimonial-card {
+      background: rgba(255,255,255,0.03);
+      padding: 30px;
+      border-radius: 15px;
+      border-left: 4px solid var(--primary);
+      font-style: italic;
+    }
+    .testimonial-card h4 { font-style: normal; margin-top: 15px; color: var(--secondary); text-align: right; }
+
+    /* ==== CONTACT SECTION ==== */
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      background: #fff;
+      color: #1a202c;
+      padding: 40px;
+      border-radius: 20px;
     }
     .contact-form input, .contact-form textarea {
-      width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px;
+      width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;
     }
     .contact-form button {
-      width: 100%; background: var(--primary); color: white; border: none;
-      padding: 1rem; border-radius: 8px; font-weight: bold; cursor: pointer;
+      width: 100%; padding: 15px; background: var(--dark); color: #fff; border: none;
+      border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s;
     }
+    .contact-form button:hover { background: var(--primary); }
 
-    /* ==== MEDIA QUERIES FOR MOBILE ==== */
+    /* ==== MOBILE OPTIMIZATION ==== */
     @media (max-width: 768px) {
       .menu-toggle { display: block; }
       nav {
-        display: none; /* Hidden by default on mobile */
-        position: absolute; top: 100%; left: 0; width: 100%;
-        flex-direction: column; background: var(--dark);
-        padding: 2rem; border-bottom: 2px solid var(--primary);
+        display: none; position: absolute; top: 100%; left: 0; width: 100%;
+        background: var(--dark); flex-direction: column; padding: 20px; gap: 20px;
+        border-bottom: 2px solid var(--primary);
       }
       nav.active { display: flex; }
-      .hero { min-height: 60vh; }
+      .section { padding: 50px 20px; }
+      .contact-container { padding: 20px; }
     }
-
-    /* REVEAL ON SCROLL JS HELPER */
-    .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
   <header>
     <div class="nav-container">
-      <a href="#" class="logo">GYM PROTOTYPE</a>
-      <button class="menu-toggle" id="mobile-menu">☰</button>
+      <a href="#" class="logo">Gym Prototype</a>
+      <button class="menu-toggle" id="mobile-toggle">☰</button>
       <nav id="nav-menu">
+        <a href="#about">About</a>
         <a href="#plans">Plans</a>
         <a href="#trainers">Trainers</a>
         <a href="#facilities">Facilities</a>
-        <a href="#contact">Join</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Join Now</a>
       </nav>
     </div>
   </header>
@@ -162,79 +189,135 @@
       <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef03a7403f?q=80&w=1200')"></div>
     </div>
     <div class="hero-content">
-      <h1>EVOLVE <span style="color:var(--primary)">NOW</span></h1>
-      <p>Premium Facilities. Expert Guidance. Real Results.</p>
-      <a href="#contact" class="btn">GET YOUR FREE PASS</a>
+      <h1>EVOLVE YOUR LIMITS</h1>
+      <p>State-of-the-art facilities. Expert trainers. Real community.</p>
+      <a href="#plans" class="btn">EXPLORE OUR PLANS</a>
+    </div>
+  </section>
+
+  <section id="about" class="section reveal">
+    <h2>About Our Mission</h2>
+    <div class="about-text">
+      <p>Gym Prototype is more than just a gym. We focus on personalized training and a supportive community to help you achieve your fitness goals. Whether you are a beginner or an elite athlete, our facilities are designed to push you further.</p>
     </div>
   </section>
 
   <section id="plans" class="section reveal">
-    <h2>Membership Plans</h2>
+    <h2>Workout Plans</h2>
     <div class="grid">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=400" class="card-img" alt="Strength">
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa20ed3b?w=400" class="card-img" alt="Strength"></div>
         <div class="card-content">
-          <h3>Strength</h3>
-          <p>Full access to iron & racks.</p>
-          <p style="color:var(--primary); font-weight:bold; margin-top:10px;">₹2000/mo</p>
+          <h3>Strength Training</h3>
+          <p>Build muscle and increase power with our elite weight programs.</p>
+          <span class="price">₹2000/month</span>
         </div>
       </div>
-      <div class="card" style="border: 2px solid var(--primary);">
-        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400" class="card-img" alt="PT">
+      <div class="card">
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400" class="card-img" alt="Cardio"></div>
         <div class="card-content">
-          <h3>Elite Coaching</h3>
-          <p>1-on-1 personalized training.</p>
-          <p style="color:var(--primary); font-weight:bold; margin-top:10px;">₹5000/mo</p>
+          <h3>Cardio Fitness</h3>
+          <p>Improve heart health with high-energy sessions and elite gear.</p>
+          <span class="price">₹1500/month</span>
+        </div>
+      </div>
+      <div class="card" style="border-color: var(--primary);">
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400" class="card-img" alt="Personal"></div>
+        <div class="card-content">
+          <h3>Personal Training</h3>
+          <p>One-on-one sessions with certified trainers tailored to you.</p>
+          <span class="price">₹5000/month</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trainers" class="section reveal" style="background: rgba(255,255,255,0.02); width: 100vw; margin-left: calc(-50vw + 50%);">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <h2>Trainer Highlights</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1567013127542-490d757e51fe?w=400" class="card-img" alt="Coach"></div>
+          <div class="card-content">
+            <h3>Elite Strength Coach</h3>
+            <p>Specializing in powerlifting and bodybuilding techniques.</p>
+            <span class="price">Book Session: ₹1000</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400" class="card-img" alt="Nutritionist"></div>
+          <div class="card-content">
+            <h3>Nutrition Specialist</h3>
+            <p>Expert guidance on diet to fuel your performance.</p>
+            <span class="price">Consultation: ₹800</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="facilities" class="section reveal">
-    <h2>The Floor</h2>
+    <h2>Our Facilities</h2>
     <div class="grid">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1590239926044-24515a4d952a?w=400" class="card-img" alt="Cardio">
-        <div class="card-content"><h3>Cardio Zone</h3></div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400" class="card-img" alt="Weights">
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400" class="card-img" alt="Weights"></div>
         <div class="card-content"><h3>Weight Room</h3></div>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400" class="card-img" alt="Recovery">
-        <div class="card-content"><h3>Recovery Lab</h3></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1590239926044-24515a4d952a?w=400" class="card-img" alt="Cardio Area"></div>
+        <div class="card-content"><h3>Cardio Studio</h3></div>
+      </div>
+      <div class="card">
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400" class="card-img" alt="Sauna"></div>
+        <div class="card-content"><h3>Steam & Sauna</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section reveal">
+    <h2>Member Stories</h2>
+    <div class="grid">
+      <div class="testimonial-card">
+        <p>"Incredible facilities! Lost 20kg in 6 months thanks to the support here."</p>
+        <h4>- Riya S.</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"The personal training is top-notch. Highly recommend for any beginner."</p>
+        <h4>- Amit K.</h4>
       </div>
     </div>
   </section>
 
   <section id="contact" class="section reveal">
-    <div class="contact-wrapper">
-      <div>
-        <h2 style="text-align:left; color:#1a202c;">Join the Tribe</h2>
-        <p>123 Fitness Street, Health City, India</p>
-        <p><strong>Open:</strong> 5:00 AM – 11:00 PM</p>
-        <p style="margin-top:1rem; font-style:italic;">"The best gym experience in the city!" - Riya S.</p>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2 style="text-align:left; color:#1a202c;">Join Today</h2>
+        <p><strong>Address:</strong> 123 Fitness Street, Health City, India</p>
+        <p><strong>Phone:</strong> +91 00000 00000</p>
+        <p><strong>Email:</strong> info@gymprototype.com</p>
+        <p><strong>Hours:</strong> 5:00 AM – 11:00 PM (Daily)</p>
       </div>
       <form class="contact-form">
         <input type="text" placeholder="Full Name" required>
-        <input type="email" placeholder="Email" required>
-        <button type="submit">GET STARTED</button>
+        <input type="email" placeholder="Email Address" required>
+        <input type="text" placeholder="Preferred Plan" required>
+        <textarea rows="4" placeholder="Any Questions?"></textarea>
+        <button type="submit">SIGN UP NOW</button>
       </form>
     </div>
   </section>
 
-  <footer style="text-align:center; padding: 2rem; opacity: 0.6; font-size: 0.8rem;">
-    &copy; 2026 Gym Prototype. Stay Strong.
+  <footer style="padding: 40px; text-align: center; color: #666; font-size: 0.9rem;">
+    &copy; 2026 Gym Prototype. All rights reserved.
   </footer>
 
   <script>
-    // MOBILE MENU LOGIC
-    const menuBtn = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
-    menuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+    // MOBILE MENU
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('active'));
 
-    // REVEAL ANIMATION
+    // REVEAL ON SCROLL
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
