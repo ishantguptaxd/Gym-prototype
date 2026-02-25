@@ -3,462 +3,290 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Achieve your fitness goals at Gym Prototype. Explore workout plans, facilities, trainer highlights, and member testimonials.">
-  <meta name="keywords" content="gym, fitness, workout plans, facilities, trainers, testimonials">
-  <title>Gym Prototype</title>
+  <meta name="description" content="Achieve your fitness goals at Gym Prototype. Elite facilities and expert trainers.">
+  <title>Gym Prototype | Unleash Your Potential</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://via.placeholder.com/32x32?text=G" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  
   <style>
-    /* ==== GLOBAL STYLES ==== */
-    * {
-      box-sizing: border-box;
+    /* ==== MODERN RESET & VARIABLES ==== */
+    :root {
+      --primary: #3182ce;
+      --secondary: #63b3ed;
+      --dark: #1a202c;
+      --light: #f7fafc;
+      --accent: #f6ad55; /* Urgency/CTA color */
     }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
-      color: #1a202c;
-      line-height: 1.6;
+      background: #0f172a;
+      color: #e2e8f0;
+      overflow-x: hidden;
     }
-    a {
-      text-decoration: none;
-      transition: color 0.3s ease;
+
+    /* ==== ANIMATIONS ==== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    h1, h2, h3 {
-      font-family: 'Oswald', sans-serif;
-      margin-bottom: 20px;
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
     }
-    h1 { font-size: 3.5em; }
-    h2 { font-size: 2.5em; color: #2d3748; }
-    h3 { font-size: 1.8em; color: #3182ce; }
-    .section {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .btn {
-      display: inline-block;
-      background: #3182ce;
-      color: #ffffff;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    .btn:hover {
-      background: #2c5282;
-      transform: translateY(-2px);
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ==== HEADER ==== */
     header {
-      background: #1a202c;
+      background: rgba(26, 32, 44, 0.95);
+      backdrop-filter: blur(10px);
       color: #ffffff;
-      padding: 20px 0;
+      padding: 15px 0;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    header h2 {
-      margin: 0;
-      font-size: 2em;
-      font-family: 'Oswald', sans-serif;
-    }
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-    nav a {
-      color: #63b3ed;
-      font-weight: 500;
-      font-size: 1.1em;
-    }
-    nav a:hover {
-      color: #ffffff;
-      text-decoration: underline;
-    }
+    header h2 { margin: 0; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
+    nav { display: flex; gap: 25px; }
+    nav a { color: #fff; font-weight: 500; transition: 0.3s; }
+    nav a:hover { color: var(--primary); }
 
-    /* ==== HERO ==== */
+    /* ==== HERO SLIDESHOW ==== */
     .hero {
-      background: linear-gradient(135deg, #d9e2ec 0%, #3182ce 100%);
-      padding: 120px 20px;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      color: #1a202c;
       position: relative;
+      color: white;
       overflow: hidden;
     }
-    .hero::before {
-      content: '';
+
+    .slideshow {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('https://via.placeholder.com/1200x600?text=Gym+Hero') no-repeat center center;
-      background-size: cover;
-      opacity: 0.2;
+      top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
     }
-    .hero h1 {
-      font-size: 4em;
-      margin: 0 0 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-    .hero p {
-      font-size: 1.3em;
-      margin-bottom: 30px;
+
+    .slide {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: slideAnim 15s infinite;
+      filter: brightness(0.4);
     }
 
-    /* ==== PLANS GRID ==== */
+    .slide:nth-child(2) { animation-delay: 5s; }
+    .slide:nth-child(3) { animation-delay: 10s; }
+
+    @keyframes slideAnim {
+      0% { opacity: 0; transform: scale(1); }
+      10% { opacity: 1; }
+      33% { opacity: 1; }
+      43% { opacity: 0; transform: scale(1.1); }
+      100% { opacity: 0; }
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 20px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 { font-size: 5em; margin: 0; line-height: 1; }
+    .hero p { font-size: 1.5em; margin: 20px 0 40px; color: #cbd5e0; }
+
+    .btn {
+      padding: 16px 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1em;
+      box-shadow: 0 4px 15px rgba(49, 130, 206, 0.4);
+      transition: 0.3s;
+    }
+    .btn:hover { background: #fff; color: var(--primary); transform: scale(1.05); }
+
+    /* ==== GLASS CARDS (PLANS) ==== */
+    .section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
+    h2 { text-align: center; font-size: 3em; margin-bottom: 50px; text-transform: uppercase; }
+
     .plans-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
     }
+
     .plan-item {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
       text-align: center;
-    }
-    .plan-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-    .plan-item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    .plan-item p {
-      margin: 10px 0;
-      font-size: 1.1em;
-    }
-    .plan-item .price {
-      font-size: 1.4em;
-      color: #3182ce;
-      font-weight: bold;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    /* ==== GALLERY ==== */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    .plan-item:hover {
+      transform: translateY(-15px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary);
     }
-    .gallery-grid img {
-      width: 100%;
-      height: 200px;
-      border-radius: 15px;
-      object-fit: cover;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .gallery-grid img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
+
+    .price { font-size: 2em; color: var(--primary); font-weight: bold; display: block; margin: 20px 0; }
 
     /* ==== TESTIMONIALS ==== */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
     .testimonial-card {
-      background: #ffffff;
+      background: #1e293b;
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      position: relative;
-    }
-    .testimonial-card::before {
-      content: '★★★★★';
-      color: #3182ce;
-      font-size: 1.5em;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-    .testimonial-card p {
-      font-style: italic;
-      color: #1a202c;
-      font-size: 1.1em;
-      margin-bottom: 20px;
-    }
-    .testimonial-card h4 {
-      margin: 0;
-      text-align: right;
-      color: #2d3748;
-      font-weight: 500;
+      border-left: 5px solid var(--primary);
     }
 
-    /* ==== CONTACT ==== */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-    .contact-info p {
-      margin: 10px 0;
-      font-size: 1.1em;
-    }
+    /* ==== CONTACT FORM ==== */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
     .contact-form {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: #fff;
+      color: #333;
+      padding: 40px;
+      border-radius: 20px;
     }
-    .contact-form h3 {
-      margin-top: 0;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-family: 'Roboto', sans-serif;
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 10px;
     }
     .contact-form button {
-      background: #3182ce;
-      color: #ffffff;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-    .contact-form button:hover {
-      background: #2c5282;
-    }
-
-    /* ==== FOOTER ==== */
-    footer {
-      background: #1a202c;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-    }
-    footer .social-links {
-      margin-top: 10px;
-    }
-    footer .social-links a {
-      color: #63b3ed;
-      margin: 0 10px;
-      font-size: 1.5em;
-    }
-    footer .social-links a:hover {
-      color: #ffffff;
+      width: 100%; background: var(--dark); color: #fff; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold;
     }
 
     /* ==== RESPONSIVE ==== */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5em; }
-      .hero { padding: 80px 20px; }
-      nav { flex-direction: column; gap: 10px; }
-      header .container { flex-direction: column; text-align: center; }
-      .plans-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 3em; }
       .contact-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      h1 { font-size: 2em; }
-      h2 { font-size: 2em; }
-      .section { padding: 40px 20px; }
-    }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="container">
       <h2>Gym Prototype</h2>
       <nav>
         <a href="#about">About</a>
-        <a href="#plans">Workout Plans</a>
-        <a href="#highlights">Trainer Highlights</a>
+        <a href="#plans">Plans</a>
         <a href="#gallery">Facilities</a>
-        <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
-    <div class="container">
-      <h1>Welcome to Gym Prototype</h1>
-      <p>Transform your body and mind with our state-of-the-art facilities and expert trainers</p>
-      <a href="#plans" class="btn">View Plans</a>
+    <div class="slideshow">
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200')"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=80&w=1200')"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&q=80&w=1200')"></div>
+    </div>
+    <div class="hero-content">
+      <h1>EVOLVE YOURSELF</h1>
+      <p>The only bad workout is the one that didn't happen.</p>
+      <a href="#contact" class="btn">Start Your Transformation</a>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2>About Us</h2>
-      <p>Gym Prototype is a demo fitness center website prototype designed to showcase workout plans, facilities, trainer highlights, and member testimonials. Perfect for testing layouts or presenting gym concepts. We focus on personalized training and a supportive community to help you achieve your fitness goals.</p>
+  <section id="about" class="section reveal">
+    <h2>Why Choose Us?</h2>
+    <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+      <p style="font-size: 1.2em; color: #94a3b8;">At Gym Prototype, we don't just provide equipment; we provide a roadmap to a better version of you. Our community is built on sweat, persistence, and results.</p>
     </div>
   </section>
 
-  <!-- WORKOUT PLANS -->
-  <section id="plans" class="section">
-    <div class="container">
-      <h2>Workout Plans</h2>
-      <div class="plans-grid">
-        <div class="plan-item">
-          <img src="https://via.placeholder.com/300x200?text=Weight+Training" alt="Weight Training">
-          <h3>Strength Training</h3>
-          <p>Build muscle and increase strength with our comprehensive weight training programs.</p>
-          <p class="price">₹2000/month</p>
-        </div>
-        <div class="plan-item">
-          <img src="https://via.placeholder.com/300x200?text=Cardio+Session" alt="Cardio Session">
-          <h3>Cardio Fitness</h3>
-          <p>Improve cardiovascular health with high-energy cardio sessions and equipment.</p>
-          <p class="price">₹1500/month</p>
-        </div>
-        <div class="plan-item">
-          <img src="https://via.placeholder.com/300x200?text=Yoga+Class" alt="Yoga Class">
-          <h3>Yoga & Flexibility</h3>
-          <p>Enhance flexibility and reduce stress with guided yoga and stretching classes.</p>
-          <p class="price">₹1800/month</p>
-        </div>
-        <div class="plan-item">
-          <img src="https://via.placeholder.com/300x200?text=Personal+Training" alt="Personal Training">
-          <h3>Personal Training</h3>
-          <p>One-on-one sessions with certified trainers tailored to your specific goals.</p>
-          <p class="price">₹5000/month</p>
-        </div>
+  <section id="plans" class="section reveal">
+    <h2>Elite Memberships</h2>
+    <div class="plans-grid">
+      <div class="plan-item">
+        <h3>Strength Training</h3>
+        <span class="price">₹2000<small>/mo</small></span>
+        <p>Full access to heavy iron and power racks.</p>
+        <a href="#contact" style="color:var(--primary)">Select Plan →</a>
+      </div>
+      <div class="plan-item" style="border: 2px solid var(--primary);">
+        <div style="background:var(--primary); color:white; font-size: 0.7em; padding: 5px; border-radius: 5px; margin-bottom: 10px;">MOST POPULAR</div>
+        <h3>Personal Training</h3>
+        <span class="price">₹5000<small>/mo</small></span>
+        <p>Customized nutrition and 1-on-1 coaching.</p>
+        <a href="#contact" style="color:var(--primary)">Select Plan →</a>
+      </div>
+      <div class="plan-item">
+        <h3>Yoga & Zen</h3>
+        <span class="price">₹1800<small>/mo</small></span>
+        <p>Unlimited classes in our heated studio.</p>
+        <a href="#contact" style="color:var(--primary)">Select Plan →</a>
       </div>
     </div>
   </section>
 
-  <!-- TRAINER HIGHLIGHTS -->
-  <section id="highlights" class="section">
-    <div class="container">
-      <h2>Trainer Highlights</h2>
-      <div class="plans-grid">
-        <div class="plan-item">
-          <img src="https://via.placeholder.com/300x200?text=Elite+Trainer" alt="Elite Trainer">
-          <h3>Elite Strength Coach</h3>
-          <p>Certified trainer specializing in powerlifting and bodybuilding techniques.</p>
-          <p class="price">Book Session: ₹1000</p>
+  <section id="contact" class="section reveal">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Join the Elite</h2>
+        <p><strong>Address:</strong> 123 Fitness Street, Health City, India</p>
+        <p><strong>Phone:</strong> +91 00000 00000</p>
+        <p><strong>Open:</strong> 5:00 AM – 11:00 PM</p>
+        <div style="margin-top: 30px; font-style: italic; color: var(--secondary);">
+          "Joining this gym was the best decision of my life." - Amit K.
         </div>
-        <div class="plan-item">
-          <img src="https://via.placeholder.com/300x200?text=Nutrition+Expert" alt="Nutrition Expert">
-          <h3>Nutrition Specialist</h3>
-          <p>Expert guidance on diet and supplementation to fuel your workouts.</p>
-          <p class="price">Consultation: ₹800</p>
-        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Get a Free 3-Day Pass</h3>
+        <form action="#">
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="tel" placeholder="Phone Number" required>
+          <button type="submit">GET STARTED NOW</button>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- FACILITIES -->
-  <section id="gallery" class="section">
-    <div class="container">
-      <h2>Facilities</h2>
-      <div class="gallery-grid">
-        <img src="https://via.placeholder.com/300x200?text=Weight+Room" alt="Weight Room">
-        <img src="https://via.placeholder.com/300x200?text=Cardio+Area" alt="Cardio Area">
-        <img src="https://via.placeholder.com/300x200?text=Yoga+Studio" alt="Yoga Studio">
-        <img src="https://via.placeholder.com/300x200?text=Lockers" alt="Lockers">
-        <img src="https://via.placeholder.com/300x200?text=Sauna" alt="Sauna">
-        <img src="https://via.placeholder.com/300x200?text=Gym+Entrance" alt="Gym Entrance">
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="section">
-    <div class="container">
-      <h2>Member Testimonials</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p>"Incredible facilities and motivating trainers! I've lost 20kg in 6 months."</p>
-          <h4>- Riya S.</h4>
-        </div>
-        <div class="testimonial-card">
-          <p>"The personal training sessions are top-notch. Highly recommend for beginners."</p>
-          <h4>- Amit K.</h4>
-        </div>
-        <div class="testimonial-card">
-          <p>"Great community and clean environment. My go-to place for staying fit!"</p>
-          <h4>- Priya M.</h4>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p><strong>Address:</strong> 123 Fitness Street, Health City, India</p>
-          <p><strong>Phone:</strong> +91 00000 00000</p>
-          <p><strong>Email:</strong> info@gymprototype.com</p>
-          <p><strong>Hours:</strong> 5:00 AM – 11:00 PM (Daily)</p>
-        </div>
-        <div class="contact-form">
-          <h3>Join Now</h3>
-          <form action="#" method="post">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="tel" name="phone" placeholder="Your Phone" required>
-            <input type="text" name="plan" placeholder="Preferred Plan" required>
-            <textarea name="message" rows="4" placeholder="Any Questions?"></textarea>
-            <button type="submit">Sign Up</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Gym Prototype. All rights reserved.</p>
-      <div class="social-links">
-        <a href="#" aria-label="Facebook">📘</a>
-        <a href="#" aria-label="Instagram">📷</a>
-        <a href="#" aria-label="Twitter">🐦</a>
-      </div>
-    </div>
+  <footer style="padding: 40px; text-align: center; background: #000; color: #666;">
+    <p>&copy; 2026 Gym Prototype. All rights reserved.</p>
   </footer>
 
+  <script>
+    // Reveal animation on scroll
+    window.addEventListener('scroll', () => {
+      let reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(el => {
+        let windowHeight = window.innerHeight;
+        let revealTop = el.getBoundingClientRect().top;
+        if (revealTop < windowHeight - 100) {
+          el.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
