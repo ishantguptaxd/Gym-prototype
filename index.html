@@ -82,8 +82,10 @@
       20%, 40% { opacity: 1; }
       50%, 100% { opacity: 0; }
     }
-    .hero-content h1 { font-family: 'Oswald'; font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 10px; }
+    .hero-content h1 { font-family: 'Oswald'; font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 5px; }
+    .hero-content .subtitle { font-family: 'Oswald'; font-size: 1.2rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; display: block; }
     .hero-content p { font-size: clamp(1rem, 3vw, 1.5rem); margin-bottom: 30px; color: #cbd5e0; }
+    
     .btn {
       display: inline-block; padding: 15px 40px; background: var(--primary); color: #fff;
       text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s;
@@ -135,22 +137,13 @@
 
     /* ==== CONTACT SECTION ==== */
     .contact-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 50px;
       background: #fff;
       color: #1a202c;
-      padding: 40px;
+      padding: 60px 40px;
       border-radius: 20px;
+      text-align: center;
     }
-    .contact-form input {
-      width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;
-    }
-    .contact-form button {
-      width: 100%; padding: 15px; background: var(--dark); color: #fff; border: none;
-      border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s;
-    }
-    .contact-form button:hover { background: var(--primary); }
+    .contact-info p { margin-bottom: 10px; font-size: 1.1rem; }
 
     /* ==== MOBILE OPTIMIZATION ==== */
     @media (max-width: 768px) {
@@ -161,8 +154,6 @@
         border-bottom: 2px solid var(--primary);
       }
       nav.active { display: flex; }
-      .section { padding: 50px 20px; }
-      .contact-container { padding: 20px; }
     }
   </style>
 </head>
@@ -178,7 +169,7 @@
         <a href="#trainers">Trainers</a>
         <a href="#facilities">Facilities</a>
         <a href="#testimonials">Reviews</a>
-        <a href="#contact">Join Now</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -191,6 +182,7 @@
     </div>
     <div class="hero-content">
       <h1>EVOLVE YOUR LIMITS</h1>
+      <span class="subtitle">A prototype by Synthree Labs</span>
       <p>State-of-the-art facilities. Expert trainers. Real community.</p>
       <a href="#plans" class="btn">EXPLORE OUR PLANS</a>
     </div>
@@ -292,17 +284,12 @@
   <section id="contact" class="section reveal">
     <div class="contact-container">
       <div class="contact-info">
-        <h2 style="text-align:left; color:#1a202c;">Join Today</h2>
+        <h2 style="color:#1a202c; margin-bottom: 20px;">Get In Touch</h2>
         <p><strong>Address:</strong> </p>
         <p><strong>Phone:</strong> +91 00000 00000</p>
         <p><strong>Email:</strong> info@gymprototype.com</p>
         <p><strong>Hours:</strong> 5:00 AM – 11:00 PM (Daily)</p>
       </div>
-      <form class="contact-form">
-        <input type="text" placeholder="Full Name" required>
-        <input type="email" placeholder="Email Address" required>
-        <button type="submit">SIGN UP NOW</button>
-      </form>
     </div>
   </section>
 
