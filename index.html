@@ -73,8 +73,10 @@
       background-size: cover; background-position: center;
       opacity: 0; animation: slideAnim 15s infinite; filter: brightness(0.3);
     }
-    .slide:nth-child(2) { animation-delay: 5s; }
-    .slide:nth-child(3) { animation-delay: 10s; }
+    .slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200'); }
+    .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200'); animation-delay: 5s; }
+    .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef03a7403f?q=80&w=1200'); animation-delay: 10s; }
+    
     @keyframes slideAnim {
       0%, 10% { opacity: 0; }
       20%, 40% { opacity: 1; }
@@ -96,7 +98,7 @@
     /* ==== ABOUT ==== */
     .about-text { text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #94a3b8; }
 
-    /* ==== GRID SYSTEM (PLANS, TRAINERS, FACILITIES) ==== */
+    /* ==== GRID SYSTEM ==== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -113,7 +115,6 @@
     }
     .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(255,255,255,0.08); }
     
-    /* Image Shimmer/Zoom */
     .card-img-wrapper { overflow: hidden; height: 200px; position: relative; }
     .card-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
     .card:hover .card-img { transform: scale(1.1); }
@@ -142,7 +143,7 @@
       padding: 40px;
       border-radius: 20px;
     }
-    .contact-form input, .contact-form textarea {
+    .contact-form input {
       width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;
     }
     .contact-form button {
@@ -184,9 +185,9 @@
 
   <section class="hero">
     <div class="slideshow">
-      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200')"></div>
-      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200')"></div>
-      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef03a7403f?q=80&w=1200')"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
     </div>
     <div class="hero-content">
       <h1>EVOLVE YOUR LIMITS</h1>
@@ -292,7 +293,7 @@
     <div class="contact-container">
       <div class="contact-info">
         <h2 style="text-align:left; color:#1a202c;">Join Today</h2>
-        <p><strong>Address:</strong> 123 Fitness Street, Health City, India</p>
+        <p><strong>Address:</strong> </p>
         <p><strong>Phone:</strong> +91 00000 00000</p>
         <p><strong>Email:</strong> info@gymprototype.com</p>
         <p><strong>Hours:</strong> 5:00 AM – 11:00 PM (Daily)</p>
@@ -300,8 +301,6 @@
       <form class="contact-form">
         <input type="text" placeholder="Full Name" required>
         <input type="email" placeholder="Email Address" required>
-        <input type="text" placeholder="Preferred Plan" required>
-        <textarea rows="4" placeholder="Any Questions?"></textarea>
         <button type="submit">SIGN UP NOW</button>
       </form>
     </div>
